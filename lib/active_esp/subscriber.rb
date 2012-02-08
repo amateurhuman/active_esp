@@ -1,4 +1,24 @@
 module ActiveESP
+  # A +Subscriber+ object represents an email address stored within a service provider's
+  # system.
+  #
+  # At the very least, an email address is required to have a valid subscriber.  If a name
+  # is also necessary, a +requires_name+ flag can be set on the class to indicate to the
+  # validator that it needs to check for a name as well.
+  #
+  # Email address are validated against the spec set forth in RFC822:
+  # http://www.w3.org/Protocols/rfc822/#z8
+  #
+  # == Example Usage
+  #   subscriber = ActiveESP::Subscriber.new(
+  #     :first_name => 'Billie Joe',
+  #     :last_name  => 'Armstong',
+  #     :email      => 'billie.joe@example.com'
+  #   )
+  #
+  #   subscriber.name   # => 'Billie Joe Armstrong'
+  #   subscriber.valid? # => true
+  #
   class Subscriber
     include RFC822
 
