@@ -6,3 +6,8 @@ RSpec::Core::RakeTask.new('spec')
 
 # If you want to make this the default task
 task :default => :spec
+
+desc 'Execute a console with the environment preloaded'
+task :console do
+  exec 'irb -rubygems -I lib -r active_esp.rb'
+end
