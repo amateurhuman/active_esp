@@ -34,6 +34,23 @@ describe ActiveESP::Subscriber do
     end
   end
 
+  describe ".last_name?" do
+    it "should return true if a last name has been assigned" do
+      subscriber = ActiveESP::Subscriber.new(:last_name => 'Haushinka')
+      subscriber.last_name?.should be_true
+    end
+
+    it "should return false if a last name has not been assigned" do
+      subscriber = ActiveESP::Subscriber.new
+      subscriber.last_name?.should be_false
+    end
+
+    it "should return false if the last name is blank" do
+      subscriber = ActiveESP::Subscriber.new(:last_name => '')
+      subscriber.last_name?.should be_false
+    end
+  end
+
   describe ".name=" do
     it "should assign the last word of a given full name as the last name" do
       subscriber = ActiveESP::Subscriber.new
