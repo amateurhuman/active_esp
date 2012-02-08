@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe ActiveESP::Subscriber do
   before(:each) do
+    ActiveESP::Subscriber.requires_name = false
     @attributes = Factory.attributes_for(:subscriber)
   end
   
@@ -51,6 +52,24 @@ describe ActiveESP::Subscriber do
     end
   end
 
+  describe ".name?" do
+    it "should return true if a first name has been assigned" do
+      subscriber = ActiveESP::Subscriber.new(:first_name => 'Haushinka')
+      subscriber.name?.should be_true
+    end
+
+    it "should return true if a last name has been assigned" do
+      subscriber = ActiveESP::Subscriber.new(:last_name => 'Haushinka')
+      subscriber.name?.should be_true
+    end
+
+    it "should return false if neither a first name nor a last name has been assigned" do
+      subscriber = ActiveESP::Subscriber.new
+      subscriber.name?.should be_false
+    end
+  end
+
+
   describe ".name=" do
     it "should assign the last word of a given full name as the last name" do
       subscriber = ActiveESP::Subscriber.new
@@ -74,6 +93,28 @@ describe ActiveESP::Subscriber do
     it "should return false if the assigned email is not valid" do
       subscriber = ActiveESP::Subscriber.new(:email => 'user')
       subscriber.should_not be_valid_email
+    end
+  end
+
+  describe ".valid_name?" do
+    it "should return true if the name isn't required" do
+      ActiveESP::Subscriber.requires_name = false
+      subscriber = ActiveESP::Subscriber.new
+      subscriber.valid_name?.should be_true
+    end
+
+    it "should return true if the name is required and the name is present" do
+      ActiveESP::Subscriber.requires_name = true
+      subscriber = ActiveESP::Subscriber.new
+      subscriber.stub(:name?).and_return(true)
+      subscriber.valid_name?.should be_true
+    end
+
+    it "should return false if the name is required and the name isn't present" do
+      ActiveESP::Subscriber.requires_name = true
+      subscriber = ActiveESP::Subscriber.new
+      subscriber.stub(:name?).and_return(false)
+      subscriber.valid_name?.should_not be_true
     end
   end
 

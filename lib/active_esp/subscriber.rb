@@ -69,5 +69,10 @@ module ActiveESP
     def valid_email?
       @email =~ EmailAddress
     end
+
+    def valid_name?
+      return false if self.class.requires_name && !name?
+      return true
+    end
   end
 end
