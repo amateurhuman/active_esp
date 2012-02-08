@@ -55,7 +55,7 @@ module ActiveESP
       end
     end
 
-    # Returns the full name of the card holder.
+    # Returns the full name of the subscriber.
     #
     # @return [String] the full name of the subscriber
     def name
