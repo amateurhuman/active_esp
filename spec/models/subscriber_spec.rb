@@ -118,4 +118,25 @@ describe ActiveESP::Subscriber do
     end
   end
 
+  describe ".valid?" do
+    it "should return true if the name and email address are valid" do
+      subscriber = ActiveESP::Subscriber.new
+      subscriber.stub(:valid_name?).and_return(true)
+      subscriber.stub(:valid_email?).and_return(true)
+      subscriber.valid?.should be_true
+    end
+
+    it "should return false if the name isn't valid" do
+      subscriber = ActiveESP::Subscriber.new
+      subscriber.stub(:valid_name?).and_return(false)
+      subscriber.valid?.should_not be_true
+    end
+
+    it "should return false if the email isn't valid" do
+      subscriber = ActiveESP::Subscriber.new
+      subscriber.stub(:valid_email?).and_return(false)
+      subscriber.valid?.should_not be_true
+    end
+  end
+
 end

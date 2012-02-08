@@ -66,6 +66,10 @@ module ActiveESP
       @last_name.present?
     end
 
+    def valid?
+      valid_email? && valid_name?
+    end
+
     def valid_email?
       @email =~ EmailAddress
     end
