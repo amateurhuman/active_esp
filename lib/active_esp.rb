@@ -1,4 +1,4 @@
-require "active_support/core_ext/class/attribute_accessors"
+require "active_support/core_ext"
 
 require "active_esp/version"
 require "active_esp/subscriber"
