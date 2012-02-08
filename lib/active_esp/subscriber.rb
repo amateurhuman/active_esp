@@ -1,5 +1,6 @@
 module ActiveESP
   class Subscriber
+    include RFC822
 
     # Forces a first and last name to be present for the object to be valid.
     # If true, the name is required.  The default value is false.
@@ -63,6 +64,10 @@ module ActiveESP
     # Returns whether the +last_name+ attribute has been set.
     def last_name?
       @last_name.present?
+    end
+
+    def valid_email?
+      @email =~ EmailAddress
     end
   end
 end

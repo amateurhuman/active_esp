@@ -65,4 +65,16 @@ describe ActiveESP::Subscriber do
     end
   end
 
+  describe ".valid_email?" do
+    it "should return true if the assigned email is valid" do
+      subscriber = ActiveESP::Subscriber.new(:email => 'user@example.com')
+      subscriber.should be_valid_email
+    end
+
+    it "should return false if the assigned email is not valid" do
+      subscriber = ActiveESP::Subscriber.new(:email => 'user')
+      subscriber.should_not be_valid_email
+    end
+  end
+
 end
