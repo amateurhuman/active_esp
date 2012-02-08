@@ -14,4 +14,6 @@ Gem::Specification.new do |gem|
   gem.name          = "active_esp"
   gem.require_paths = ["lib"]
   gem.version       = ActiveESP::VERSION
+
+  gem.add_development_dependency "rspec", "~> 2.8.0"
 end
