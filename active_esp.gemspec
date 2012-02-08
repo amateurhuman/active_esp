@@ -16,4 +16,8 @@ Gem::Specification.new do |gem|
   gem.version       = ActiveESP::VERSION
 
   gem.add_development_dependency "rspec", "~> 2.8.0"
+  gem.add_development_dependency "factory_girl", "~> 2.5.1"
+  gem.add_development_dependency "yard", "~> 0.7.5"
+  gem.add_development_dependency "redcarpet", "~> 2.1.0"
+  gem.add_development_dependency "activesupport", ">= 3.0.0"
 end
