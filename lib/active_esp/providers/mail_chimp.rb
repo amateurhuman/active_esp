@@ -11,13 +11,17 @@ module ActiveESP
       def subscribe(subscriber, list)
         call(:list_subscribe, { :id => list.id, :email_address => subscriber.email, :merge_vars => { :FNAME => subscriber.first_name, :LNAME => subscriber.last_name }})
       end
-
       def unsubscribe(subscriber, list)
         call(:list_unsubscribe, { :id => list.id, :email_address => subscriber.email })
       end
 
       def delete!(subscriber, list)
         call(:list_unsubscribe, { :id => list.id, :email_address => subscriber.email, :delete_member => true })
+      end
+
+      def subscribed?(subscriber, list)
+        response = call(:list_member_info, { :id => list.id, :email_address => subscriber.email })
+        response['success'] && response['data'].first['status'] == 'subscribed'
       end
 
       def lists
