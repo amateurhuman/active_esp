@@ -1,3 +1,4 @@
+require "interface"
 require "httparty"
 require "json"
 require "cgi"
