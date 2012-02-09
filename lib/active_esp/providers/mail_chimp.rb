@@ -12,6 +12,10 @@ module ActiveESP
         call(:list_subscribe, { :id => list.id, :email_address => subscriber.email, :merge_vars => { :FNAME => subscriber.first_name, :LNAME => subscriber.last_name }})
       end
 
+      def unsubscribe(subscriber, list)
+        call(:list_unsubscribe, { :id => list.id, :email_address => subscriber.email })
+      end
+
       def lists
         call(:lists)
       end
