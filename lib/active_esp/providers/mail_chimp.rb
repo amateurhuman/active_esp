@@ -16,6 +16,10 @@ module ActiveESP
         call(:list_unsubscribe, { :id => list.id, :email_address => subscriber.email })
       end
 
+      def delete!(subscriber, list)
+        call(:list_unsubscribe, { :id => list.id, :email_address => subscriber.email, :delete_member => true })
+      end
+
       def lists
         call(:lists)
       end
