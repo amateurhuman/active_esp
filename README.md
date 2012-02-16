@@ -26,7 +26,7 @@ subscriber = ActiveESP::Subscriber.new(
   :name => 'Brian Morton'
 )
 
-provider = ActiveESP::Provider::MailChimp.new(
+provider = ActiveESP::Providers::MailChimp.new(
   :api_key => '12345678901234567890-us4'
 )
 

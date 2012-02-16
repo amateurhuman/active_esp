@@ -1,7 +1,7 @@
 module ActiveESP
-  module Provider
+  module Providers
     # Thanks to ActiveMerchant for this autoloading code!
-    Dir[File.dirname(__FILE__) + '/provider/*.rb'].each do |f|
+    Dir[File.dirname(__FILE__) + '/providers/*.rb'].each do |f|
       # Get camelized class name 
       filename = File.basename(f, '.rb')
       

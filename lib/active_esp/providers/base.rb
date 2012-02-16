@@ -3,13 +3,13 @@ module ActiveESP
   # methods to conform to a +Provider+ protocol.
   #
   # To make things work smoothly, the framework expects a +Provider+ to extend from
-  # +ActiveESP::Provider::Base+. This allows common functionality to be shared
+  # +ActiveESP::Providers::Base+. This allows common functionality to be shared
   # amongst the providers as well as exceptions to be raised when the provider
   # doesn't implement a required method.
   #
-  module Provider
+  module Providers
     class Base
-      implements ActiveESP::Provider::Interface
+      implements ActiveESP::Providers::Interface
       # Returns or sets the API key
       #
       # @return [String]
@@ -42,9 +42,6 @@ module ActiveESP
         end
       end
 
-      def subscribe(subscriber, list = nil)
-        raise MethodNotImplementedException
-      end
     end
 
     class MethodNotImplementedException < Exception; end

@@ -17,5 +17,5 @@ require "active_esp/list"
 # This framework provides some common classes for managing email marketing data structures
 # as well as the adapters for interfacing with the providers' APIs.
 module ActiveESP
-  autoload :Provider, "active_esp/provider"
+  autoload :Providers, "active_esp/providers"
 end

@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe ActiveESP::Provider::MailChimp do
-  it { should implement_interface(ActiveESP::Provider::Interface) }
+describe ActiveESP::Providers::MailChimp do
+  it { should implement_interface(ActiveESP::Providers::Interface) }
 end

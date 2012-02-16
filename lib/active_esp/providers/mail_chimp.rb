@@ -1,5 +1,5 @@
 module ActiveESP
-  module Provider
+  module Providers
     class MailChimp < Base
       include HTTParty
       format :plain
