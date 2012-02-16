@@ -6,6 +6,7 @@ require "cgi"
 require "active_support/core_ext"
 require "active_support/inflector"
 require "active_esp/version"
+require "active_esp/configuration"
 require "active_esp/rfc822"
 require "active_esp/subscriber"
 require "active_esp/list"
@@ -18,4 +19,9 @@ require "active_esp/list"
 # as well as the adapters for interfacing with the providers' APIs.
 module ActiveESP
   autoload :Providers, "active_esp/providers"
+  
+  include Configuration
+
+  class ProviderNotSupportedException < Exception; end
 end
+

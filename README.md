@@ -18,7 +18,7 @@ Or install it yourself as:
 
     $ gem install active_esp
 
-## Usage
+## Basic usage
 
 ```
 subscriber = ActiveESP::Subscriber.new(
@@ -33,6 +33,18 @@ provider = ActiveESP::Providers::MailChimp.new(
 list = ActiveESP::List.new(:id => '03b3b0f203')
 
 provider.subscribe(subscriber, list) # => true
+```
+
+## Configuring and using a shared provider
+
+```
+ActiveESP.configure do |c|
+  c.provider :mail_chimp
+  c.credentials :api_key => '12345678901234567890-us4'
+end
+
+ActiveESP.provider # => #<ActiveESP::Providers::MailChimp:0x007f868b33fb30 @api_key="12345678901234567890-us4">
+
 ```
 
 ## Contributing
