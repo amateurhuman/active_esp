@@ -1,7 +1,6 @@
 module ActiveESP
   module Provider
     class MailChimp < Base
-      implements ActiveESP::Provider::Interface
       include HTTParty
       format :plain
 

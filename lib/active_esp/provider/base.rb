@@ -9,6 +9,7 @@ module ActiveESP
   #
   module Provider
     class Base
+      implements ActiveESP::Provider::Interface
       # Returns or sets the API key
       #
       # @return [String]
