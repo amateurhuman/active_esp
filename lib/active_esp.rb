@@ -24,4 +24,3 @@ module ActiveESP
 
   class ProviderNotSupportedException < Exception; end
 end
-
