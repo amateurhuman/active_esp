@@ -5,6 +5,7 @@ require "cgi"
 
 require "active_support/core_ext"
 require "active_support/inflector"
+require "active_esp/inflections"
 require "active_esp/version"
 require "active_esp/configuration"
 require "active_esp/rfc822"
