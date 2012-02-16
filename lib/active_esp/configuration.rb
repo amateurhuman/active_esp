@@ -45,16 +45,12 @@ module ActiveESP
       # @param [Symbol] An optional symbol representing the provider class to use
       # @return [Provider] The shared provider object or nil if it can't be instantiated
       def provider(provider_class = nil)
+        # If the provider hasn't been instantiated yet and we're not using this method
+        # to set the provider's class, we need to reset the provider so that it can be
+        # returned properly.
+        reset_provider if !@provider && !provider_class
         return @provider unless provider_class
         self.provider_class = provider_class
-
-        begin
-          full_provider_class_name = "ActiveESP::Providers::#{@provider_class.to_s.classify}".constantize
-        rescue NameError
-          raise ActiveESP::ProviderNotSupportedException.new("#{provider_class.to_s} is not a supported provider.")
-        end
-
-        @provider ||= full_provider_class_name.new(@credentials) if @credentials
       end
 
       # Sets the shared provider to any custom instantiated provider
@@ -116,8 +112,13 @@ module ActiveESP
       #
       # @return [Provider] shared provider instance
       def reset_provider
-        @provider = nil
-        provider
+        begin
+          full_provider_class_name = "ActiveESP::Providers::#{@provider_class.to_s.classify}".constantize
+        rescue NameError
+          raise ActiveESP::ProviderNotSupportedException.new("#{@provider_class.to_s} is not a supported provider.")
+        end
+
+        @provider = full_provider_class_name.new(@credentials)
       end
     end
   end
