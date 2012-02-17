@@ -35,6 +35,8 @@ module ActiveESP
       def endpoint
         if defined?(@endpoint)
           @endpoint
+        elsif self.class.endpoint
+          self.class.endpoint
         elsif superclass != Object && superclass.endpoint
           superclass.endpoint
         else
