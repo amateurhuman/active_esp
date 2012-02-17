@@ -20,6 +20,8 @@ Or install it yourself as:
 
 ## Basic usage
 
+For basic usage, an instance of any of the supported providers may be instantiated and used independently by calling methods on the provider directly.
+
 ```
 subscriber = ActiveESP::Subscriber.new(
   :email => 'brian@xq3.net', 
@@ -37,6 +39,8 @@ provider.subscribe(subscriber, list) # => true
 
 ## Configuring and using a shared provider
 
+For a better integration into an application, using a shared provider tries to hide as much of the provider's specific implementation details as it can.  After the provider is configured, as many calls as possible are genericized to work across all implementations.
+
 ```
 ActiveESP.configure do |c|
   c.provider :mail_chimp
@@ -47,6 +51,8 @@ ActiveESP.provider # => #<ActiveESP::Providers::MailChimp:0x007f868b33fb30 @api_
 ```
 
 ## Using convenience methods
+
+Convenience methods are defined on the basic Subscriber and List classes for sending themselves in an API request to the shared provider.  After configuring a provider, these methods can be fired on any subscriber or list object.
 
 ```
 ActiveESP.configure do |c|
