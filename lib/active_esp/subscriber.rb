@@ -29,6 +29,11 @@ module ActiveESP
     cattr_accessor :requires_name
     self.requires_name = false
 
+    # Returns or sets the subscriber's ID as determined by the provider
+    #
+    # @return [String]
+    attr_accessor :id
+
     # Returns or sets the subscriber's email address
     #
     # @return [String]
