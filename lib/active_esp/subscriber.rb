@@ -103,5 +103,24 @@ module ActiveESP
       return false if self.class.requires_name && !name?
       return true
     end
+
+    # Accessing commonly used API calls
+
+    # Add the subscriber to the provider and optionally subscribe them to the
+    # given list.
+    #
+    # @see ActiveESP::Providers::Interface#subscribe
+    def subscribe!(list = nil)
+      raise ActiveESP::ProviderNotConfiguredException unless ActiveESP.provider
+      ActiveESP.provider.subscribe(self, list)
+    end
+
+    # Remove the subscriber from the given list.
+    #
+    # @see ActiveESP::Providers::Interface#unsubscribe
+    def unsubscribe!(list)
+      raise ActiveESP::ProviderNotConfiguredException unless ActiveESP.provider
+      ActiveESP.provider.unsubscribe(self, list)
+    end
   end
 end

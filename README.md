@@ -44,7 +44,24 @@ ActiveESP.configure do |c|
 end
 
 ActiveESP.provider # => #<ActiveESP::Providers::MailChimp:0x007f868b33fb30 @api_key="12345678901234567890-us4">
+```
 
+## Using convenience methods
+
+```
+ActiveESP.configure do |c|
+  c.provider :mail_chimp
+  c.credentials :api_key => '12345678901234567890-us4'
+end
+
+member = ActiveESP::Subscriber.new(
+  :email => 'brian@xq3.net', 
+  :name => 'Brian Morton'
+)
+
+list = ActiveESP::List.new(:id => '123456')
+
+member.subscribe!(list)
 ```
 
 ## Contributing

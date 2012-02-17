@@ -20,5 +20,23 @@ module ActiveESP
         end
       end
     end
+
+    # Accessing commonly used API calls
+
+    # Add the given subscriber to this list.
+    #
+    # @see ActiveESP::Providers::Interface#subscribe
+    def subscribe!(subscriber)
+      raise ActiveESP::ProviderNotConfiguredException unless ActiveESP.provider
+      ActiveESP.provider.subscribe(subscriber, self)
+    end
+
+    # Remove the given subscriber from this list.
+    #
+    # @see ActiveESP::Providers::Interface#unsubscribe
+    def unsubscribe!(subscriber)
+      raise ActiveESP::ProviderNotConfiguredException unless ActiveESP.provider
+      ActiveESP.provider.unsubscribe(subscriber, self)
+    end
   end
 end

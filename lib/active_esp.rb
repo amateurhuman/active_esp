@@ -24,4 +24,5 @@ module ActiveESP
   include Configuration
 
   class ProviderNotSupportedException < Exception; end
+  class ProviderNotConfiguredException < Exception; end
 end
