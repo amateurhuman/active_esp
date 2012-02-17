@@ -11,5 +11,8 @@ module ActiveESP
       # Register for autoloading
       autoload gateway_class, f      
     end
+
+    class CouldNotSubscribeToListException < Exception; end
+    class CouldNotUnsubscribeFromListException < Exception; end
   end
 end
