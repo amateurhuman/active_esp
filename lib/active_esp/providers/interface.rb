@@ -4,13 +4,14 @@ module ActiveESP
       # Subscription methods
 
       def find_subscriber(params); end
-      def subscribe(subscriber, list = nil); end
+      def create_subscriber(subscriber); end
       def unsubscribe(subscriber, list = nil); end
       def subscribed?(subscriber, list = nil); end
 
       # List methods
       
       def lists; end
+      def subscribe_to_list(subscriber, list); end
     end
   end
 end
