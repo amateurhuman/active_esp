@@ -57,6 +57,18 @@ module ActiveESP
 
       # Interface implementation
 
+      # Find a contact stored in the iContact account.
+      #
+      # @see ActiveESP::Providers::Interface#find_subscriber
+      def find_subscriber(params)
+        response = call(:get, "/a/#{account_id}/c/#{client_folder_id}/contacts", params)
+        return [] unless response['contacts']
+
+        response['contacts'].map do |contact|
+          contact_as_subscriber(contact)
+        end
+      end
+
       # Create a contact and optionally subscribe them to a provided list.
       #
       # Note: On iContact, a user cannot be subscribed to a list that they have
@@ -141,6 +153,22 @@ module ActiveESP
         @client_folder_id ||= client_folders['clientfolders'].first['clientFolderId']
       end
       attr_writer :client_folder_id
+
+      # Representing iContact models as ActiveESP models
+
+      # Returns a new ActiveESP::Subscriber object from a contact hash returned from
+      # an iContact response.
+      #
+      # @param [Hash] contact A single contact from an iContact response
+      # @return [Subscriber] Returns a new Subscriber object
+      def contact_as_subscriber(contact)
+        Subscriber.new(
+          :first_name => contact['firstName'],
+          :last_name => contact['lastName'],
+          :email => contact['email'],
+          :id => contact['contactId']
+        )
+      end
 
     private
       def call(method, resource, params = {})
