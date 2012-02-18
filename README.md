@@ -1,5 +1,7 @@
 # ActiveESP
 
+**NOTE**: ActiveESP is still a very early project with limited support.  Be careful when using it as implementations are still changing rapidly.  Feel free to contribute and help us with our first official release!
+
 ActiveESP is an abstraction library for managing subscribers, campaigns, and other email marketing facilities. It aims to provide a consistent interface to interact with the numerous ESPs operating with different terminologies and strategies.
 
 This framework provides some common classes for managing email marketing data structures as well as the adapters for interfacing with the providers' APIs.
