@@ -17,6 +17,8 @@ module ActiveESP
       end
 
     private
+      # This implementation mostly comes from the MailChimp gibbon gem
+      # available at: https://github.com/amro/gibbon
       def call(method, params = {})
         api_url = endpoint + '/?method=' + method.to_s.camelize(:lower)
         params = api_params(params)
