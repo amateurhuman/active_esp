@@ -6,7 +6,7 @@ Gem::Specification.new do |gem|
   gem.email         = ["bmorton@sdreader.com"]
   gem.description   = %q{Framework and tools for managing email service providers.}
   gem.summary       = %q{ActiveESP is an abstraction library for managing subscribers, campaigns, and other email marketing facilities.  It provides a consistent interface to interact with the numerous ESPs.}
-  gem.homepage      = "http://1703india.st/active_esp"
+  gem.homepage      = "https://github.com/bmorton/active_esp"
 
   gem.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   gem.files         = `git ls-files`.split("\n")
