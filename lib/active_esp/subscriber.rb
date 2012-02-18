@@ -106,6 +106,12 @@ module ActiveESP
 
     # Accessing commonly used API calls
 
+    def create!
+      raise ActiveESP::ProviderNotConfiguredException unless ActiveESP.provider
+      raise ActiveESP::SubscriberInvalid
+      ActiveESP.provider.create_subscriber(self)
+    end
+
     # Add the subscriber to the provider and optionally subscribe them to the
     # given list.
     #
