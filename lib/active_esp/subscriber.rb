@@ -112,7 +112,7 @@ module ActiveESP
     # @see ActiveESP::Providers::Interface#subscribe
     def subscribe!(list = nil)
       raise ActiveESP::ProviderNotConfiguredException unless ActiveESP.provider
-      ActiveESP.provider.subscribe(self, list)
+      ActiveESP.provider.subscribe_to_list(self, list)
     end
 
     # Remove the subscriber from the given list.
@@ -121,6 +121,13 @@ module ActiveESP
     def unsubscribe!(list)
       raise ActiveESP::ProviderNotConfiguredException unless ActiveESP.provider
       ActiveESP.provider.unsubscribe(self, list)
+    end
+
+    class << self
+      def find(params)
+        raise ActiveESP::ProviderNotConfiguredException unless ActiveESP.provider
+        ActiveESP.provider.find_subscriber(params)
+      end
     end
   end
 end
