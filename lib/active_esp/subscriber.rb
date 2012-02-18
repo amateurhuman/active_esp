@@ -108,7 +108,6 @@ module ActiveESP
 
     def create!
       raise ActiveESP::ProviderNotConfiguredException unless ActiveESP.provider
-      raise ActiveESP::SubscriberInvalid
       ActiveESP.provider.create_subscriber(self)
     end
 
