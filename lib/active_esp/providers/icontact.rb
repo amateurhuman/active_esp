@@ -69,21 +69,12 @@ module ActiveESP
         end
       end
 
-      # Create a contact and optionally subscribe them to a provided list.
-      #
-      # Note: On iContact, a user cannot be subscribed to a list that they have
-      # previously unsubscribed from.
-      #
-      # @see ActiveESP::Providers::Interface#subscribe
-      def subscribe(subscriber, list = nil)
+      def create_subscriber(subscriber)
         response = call(:post, "/a/#{account_id}/c/#{client_folder_id}/contacts", [{:email => subscriber.email, :firstName => subscriber.first_name, :lastName => subscriber.last_name}])
         subscriber.id = response['contacts'].first['contactId']
-        if list
-          list_response = call(:post, "/a/#{account_id}/c/#{client_folder_id}/subscriptions", [{:listId => list.id, :contactId => subscriber.id, :status => 'normal' }])
-          raise ActiveESP::Providers::CouldNotSubscribeToListException, list_response['warnings'] if list_response['warnings']
-        end
         subscriber
       end
+      alias :find_or_create_subscriber :create_subscriber
 
       # Unsubscribe a subscriber from the provided list.
       #
@@ -100,6 +91,19 @@ module ActiveESP
       # @see ActiveESP::Providers::Interface#lists
       def lists
         call(:get, "/a/#{account_id}/c/#{client_folder_id}/lists")
+      end
+
+      # Create a contact and optionally subscribe them to a provided list.
+      #
+      # Note: On iContact, a user cannot be subscribed to a list that they have
+      # previously unsubscribed from.
+      #
+      # @see ActiveESP::Providers::Interface#subscribe
+      def subscribe_to_list(subscriber, list)
+        subscriber = find_or_create_subscriber(subscriber) unless subscriber.id
+        list_response = call(:post, "/a/#{account_id}/c/#{client_folder_id}/subscriptions", [{:listId => list.id, :contactId => subscriber.id, :status => 'normal' }])
+        raise ActiveESP::Providers::CouldNotSubscribeToListException, list_response['warnings'] if list_response['warnings']
+        return subscriber
       end
 
       # Getting iContact-specific account information
