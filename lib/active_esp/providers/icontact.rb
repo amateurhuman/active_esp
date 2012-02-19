@@ -177,8 +177,12 @@ module ActiveESP
     private
       def call(method, resource, params = {})
         self.class.base_uri self.endpoint
-        body = params.to_json
-        response = self.class.send(method, resource, :headers => headers, :body => body)
+        if method == :get
+          response = self.class.get(resource, :headers => headers, :query => params)
+        else
+          body = params.to_json
+          response = self.class.send(method, resource, :headers => headers, :body => body)
+        end
 
         JSON.parse(response.body)
       end
