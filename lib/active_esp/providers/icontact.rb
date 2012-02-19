@@ -186,7 +186,7 @@ module ActiveESP
       def headers
         { 'Accept' => 'application/json',
           'Content-Type' => 'application/json',
-          'API-Version' => api_version,
+          'API-Version' => api_version || '2.0',
           'API-AppId' => app_id,
           'API-Username' => username,
           'API-Password' => password }
