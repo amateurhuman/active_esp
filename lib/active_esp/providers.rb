@@ -15,4 +15,7 @@ module ActiveESP
     class CouldNotSubscribeToListException < Exception; end
     class CouldNotUnsubscribeFromListException < Exception; end
   end
+
+  # This is required when ActiveSupport < 3.2 is used
+  autoload :IContact, "active_esp/providers/icontact.rb"
 end
