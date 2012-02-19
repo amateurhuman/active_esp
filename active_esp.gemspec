@@ -17,7 +17,7 @@ Gem::Specification.new do |gem|
 
   gem.add_runtime_dependency "json", "> 1.4.0"
   gem.add_runtime_dependency "httparty", "~> 0.8.1"
-  gem.add_runtime_dependency "activesupport", ">= 3.0.0"
+  gem.add_runtime_dependency "activesupport", ">= 3.1.0"
   gem.add_runtime_dependency "shuber-interface", "~> 0.0.4"
 
   gem.add_development_dependency "rspec", "~> 2.8.0"
